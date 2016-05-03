@@ -1,0 +1,72 @@
+# REDHOOKBAY specific rules for recovery os
+on early-init
+    setenforce 0
+    #insmod /lib/modules/pnwdisp.ko
+    #insmod /lib/modules/pvrsgx.ko
+    chmod 0600 /dev/dri/controlD64
+    start thermald
+
+on init
+    # Android creates by-name disk links with the disk controller
+    # in the generated path, so that the names pulled out of the GPT
+    # can be associated with the correct disk. Create a shortcut to
+    # /dev/block/by-name so that we can use the same fstabs everywhere.
+    symlink /dev/block/pci/pci0000:00/0000:00:01.0/by-name /dev/block/by-name
+
+    write /proc/sys/kernel/panic_on_oops 1
+
+    mkdir /factory 0775 system system
+    mount ext4 /dev/block/by-name/factory /factory nosuid nodev noatime barrier=1,data=ordered
+
+    mkdir /asdf 0771 system system
+    wait /dev/block/by-name/asdf
+#    exec /system/bin/e2fsck -p /dev/block/by-name/asdf
+    mount ext4 /dev/block/by-name/asdf /asdf nosuid nodev barrier=1
+
+    # pstore/ramoops previous console log
+    mount pstore pstore /sys/fs/pstore
+    chown system log /sys/fs/pstore/console-ramoops
+    chmod 0440 /sys/fs/pstore/console-ramoops
+
+on boot
+    #insmod /lib/modules/rmi4.ko boot_mode=1
+    setprop sys.usb.config adb
+    trigger firmware_mounts_complete
+
+on fs
+    #insmod /lib/modules/tntfs.ko
+    #insmod /lib/modules/texfat.ko
+
+    copy /sys/fs/pstore/console-ramoops /asdf/lastkmsg_BeforeRecovery
+
+on firmware_mounts_complete
+    rm /dev/.booting
+
+on property:sys.usb.config=adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 0b05
+    write /sys/class/android_usb/android0/idProduct 7770
+    write /sys/class/android_usb/android0/iProduct "Android-Phone"
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+
+service intel_prop /sbin/intel_prop
+    oneshot
+
+# copied from common/init.watchdogd.rc
+service watchdogd /sbin/watchdogd 60 20
+    oneshot
+
+service thermald /sbin/thermald ROS
+    class core
+    user root
+
+# Reset the watchdog counter once boot is completed
+on property:init.svc.recovery=running
+    write /sys/devices/virtual/misc/watchdog/counter "0"
+
+# ASUS_BSP David "upi gauge daemon" +++
+service upi_ug31xx /upi_ug31xx
+    class core
+    seclabel u:r:upi_ug31xx:s0
+# ASUS_BSP David "upi gauge daemon" ---

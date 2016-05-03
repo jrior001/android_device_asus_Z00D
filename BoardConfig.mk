@@ -15,52 +15,60 @@
 #
 
 TARGET_ARCH := x86
-TARGET_ARCH_VARIANT := silvermont
+TARGET_ARCH_VARIANT := x86-atom
 TARGET_CPU_ABI := x86
 TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
 TARGET_CPU_ABI_LIST_32_BIT := x86,armeabi-v7a,armeabi
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
-TARGET_BOARD_PLATFORM := moorefield
-TARGET_BOOTLOADER_BOARD_NAME := moorefield
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
+#TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := x86
 
-TARGET_DROIDBOOT_LIBS := libintel_droidboot
+
+TARGET_BOARD_PLATFORM := clovertrail
+TARGET_BOOTLOADER_BOARD_NAME := clovertrail
+TARGET_USERIMAGES_USE_EXT4 := true
+#TARGET_USERIMAGES_USE_F2FS := true
+
+#TARGET_DROIDBOOT_LIBS := libintel_droidboot
 
 # Adb
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 
 # Binder API version
-TARGET_USES_64_BIT_BINDER := true
+#TARGET_USES_64_BIT_BINDER := true
 
 # Bootloader
-TARGET_OTA_ASSERT_DEVICE := Z00A,Z008
+TARGET_OTA_ASSERT_DEVICE := Z00D
 # bootstub as 2nd bootloader
-TARGET_BOOTLOADER_IS_2ND := true
+#TARGET_BOOTLOADER_IS_2ND := true
 
 # Charger
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_HEALTHD_CUSTOM_CHARGER_RES := device/asus/zenfone2/charger/images
+#BOARD_HEALTHD_CUSTOM_CHARGER_RES := device/asus/zenfone2/charger/images
 
 # EGL
-BOARD_EGL_CFG := device/asus/mofd-common/configs/egl.cfg
+BOARD_EGL_CFG := device/asus/Z00D/configs/egl.cfg
 
 # Init
-TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_mofd
-TARGET_LIBINIT_DEFINES_FILE := device/asus/zenfone2/init/init_mofd.cpp
+TARGET_IGNORE_RO_BOOT_SERIALNO := true
 
 # Inline kernel building
-TARGET_KERNEL_SOURCE := kernel/asus/moorefield
-TARGET_KERNEL_ARCH := x86_64
+TARGET_KERNEL_SOURCE := kernel/asus/Z00D
+TARGET_KERNEL_ARCH := x86
 BOARD_KERNEL_IMAGE_NAME := bzImage
-TARGET_KERNEL_CONFIG := cyanogenmod_zenfone2_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_Z00D_defconfig
+KERNEL_SOC := ctp
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 
 # Kernel cmdline
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 snd_pcm.maximum_substreams=8 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\"
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+#TARGET_PREBUILT_KERNEL := device/asus/Z00D/bzImage
+
+# prebuild source kernel
+BOARD_CUSTOM_BOOTIMG_MK := device/asus/Z00D/intel-boot-tools/boot.mk
+BOARD_CUSTOM_MKBOOTIMG := device/asus/Z00D/intel-boot-tools/boot.mk
+DEVICE_BASE_BOOT_IMAGE := device/asus/Z00D/base_images/boot_118.img
+DEVICE_BASE_RECOVERY_IMAGE := device/asus/Z00D/base_images/recovery_118.img
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -75,18 +83,18 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 59261286400
 
 # PowerHAL
-TARGET_POWERHAL_VARIANT := mofd_v1
+#TARGET_POWERHAL_VARIANT := mofd_v1
 
 # Recovery
 BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_FSTAB := device/asus/zenfone2/recovery/root/etc/twrp.fstab
-TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd
+TARGET_RECOVERY_FSTAB := device/asus/Z00D/recovery/root/etc/twrp.fstab
+TARGET_RECOVERY_DEVICE_MODULES := libinit_Z00D
 
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/asus/zenfone2/sepolicy
+# BOARD_SEPOLICY_DIRS += device/asus/Z00D/sepolicy
 
 # TWRP
 TW_THEME := portrait_hdpi

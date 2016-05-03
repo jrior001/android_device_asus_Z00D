@@ -1,15 +1,13 @@
 # TWRP defaults Crypto_Key_Location="footer", so no need to add flags=encryptable=footer to /data
 
-# device                    mount_point fstype  mount_flags                                                                fs_flags    twrp_flags
-/dev/block/by-name/system   /system     ext4    ro,noatime                                                                 defaults
-/dev/block/by-name/cache    /cache      ext4    nosuid,nodev,noatime,barrier=1,data=ordered                                defaults    twrp=display="Factory"
-/dev/block/by-name/config   /config     ext4    nosuid,nodev,noatime,barrier=1,data=ordered                                defaults    twrp=display="Config";backup=1
-/dev/block/by-name/data     /data       ext4    nosuid,nodev,noatime,nodiratime,barrier=1,data=ordered,noauto_da_alloc     defaults    twrp=encryptable=/factory/userdata_footer
-/dev/block/by-name/factory  /factory    ext4    nosuid,nodev,noatime,barrier=1,data=ordered                                defaults    twrp=display="Factory"
-/dev/block/by-name/boot     /boot       emmc    defaults                                                                   defaults
-/dev/block/by-name/recovery /recovery   emmc    defaults                                                                   defaults
-/dev/block/by-name/splashscreen /splash emmc    defaults                                                                   defaults    twrp=backup=1;display="Splash";flashimg=1
+#/boot           osip        /dev/block/by-name/boot
+#/recovery       osip        /dev/block/by-name/recovery
+#/fastboot       osip        /dev/block/by-name/fastboot
 
-/dev/block/sda1                 /usb-otg        vfat    defaults                                defaults    twrp=display="USB OTG";storage;wipeingui;removable
-/dev/block/mmcblk1p1            /external_sd    vfat    defaults                                defaults    twrp=display="MicroSD";storage;wipeingui;removable
-
+/cache		ext4		/dev/block/by-name/cache
+/system		ext4		/dev/block/by-name/system
+/data		ext4		/dev/block/by-name/data				flags=encryptable=/config/userdata_footer
+/factory	ext4		/dev/block/by-name/factory			display="Factory"
+/config		ext4		/dev/block/by-name/config
+/external_sd     vfat    	/dev/block/mmcblk1p1    		flags=display="MicroSD";storage;wipeingui;removable
+/usb_otg       vfat     /dev/block/sda1	 /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable
