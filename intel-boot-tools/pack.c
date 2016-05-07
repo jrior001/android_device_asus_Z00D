@@ -80,8 +80,8 @@ int main(int argc, char *argv[])
 	struct stat st;
 	uint32_t tmp, paddings, totalImageSize;
 	char buf[BUFSIZ];
-	char buf2[CMDLINE_SIZE];
 	size_t size;
+	int i;
 	struct bootheader *file;
 
 	if (argc != 6)
@@ -110,10 +110,11 @@ int main(int argc, char *argv[])
 		ERROR("ERROR reading bootstub\n");
 
 	/* copy cmdline to header */
-	while ((size = fread(buf2, 1, CMDLINE_SIZE, fcmdline))) {
-		file->cmdline[size] = buf2[size];
+	for(i = 0; i < CMDLINE_SIZE; i++)
+	{
+		fscanf(fcmdline, "%c", &file->cmdline[i]);
 	}
-				
+
 	/* Figure out the bzImage size and set it */
 	if (stat(bzImage, &st) == 0) {
 		tmp = st.st_size;

@@ -57,11 +57,11 @@ int main(int argc, char *argv[])
 	char *origin;
 	char *bzImage;
 	char *ramdisk;
-        char *cmdline;
+	char *cmdline;
 	FILE *forigin;
 	FILE *fbzImage;
 	FILE *framdisk;
-        FILE *fcmdline;
+	FILE *fcmdline;
 	uint32_t bzImageLen;
 	uint32_t ramdiskLen;
 	uint32_t cmdlineLen = CMDLINE_SIZE;
@@ -75,12 +75,12 @@ int main(int argc, char *argv[])
 	origin = argv[1];
 	bzImage = argv[2];
 	ramdisk = argv[3];
-        cmdline = argv[4];
+	cmdline = argv[4];
 
 	forigin = fopen(origin, "r");
 	fbzImage = fopen(bzImage, "w");
 	framdisk = fopen(ramdisk, "w");
-        fcmdline = fopen(cmdline, "w");
+	fcmdline = fopen(cmdline, "w");
 
 	if (!forigin || !bzImage || !framdisk || !fcmdline)
 		ERROR("ERROR: failed to open origin or output images\n");

@@ -1,0 +1,3 @@
+# ASUS_BSP Paul +++
+/dev/snd/*                0666   system     audio
+# ASUS_BSP Paul ---

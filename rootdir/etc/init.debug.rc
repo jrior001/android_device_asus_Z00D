@@ -1,0 +1,164 @@
+# Enable by default android java wakelock logging
+on init
+    #mkdir /logs
+    symlink /data/logs /logs
+    mkdir /pstore 0750 root log
+    write /proc/sys/kernel/kptr_restrict 2
+
+on early-boot
+    #chown system log /logs
+    #chmod 0770 /logs
+
+on boot
+    mount pstore none /pstore
+
+on post-fs-data
+    mkdir /data/tombstones 0755 system system
+    mkdir /data/system/    0755 system system
+    mkdir /data/system/dropbox 0700 system system
+
+    mkdir /data/logs 0770 system log
+    mkdir /logs/modemcrash 0775 system system
+    mkdir /logs/aplogs 0775 system log
+    mkdir /data/logs/stats 0775 system system
+    mkdir /data/logs/gps 0775 system system
+
+on charger
+    # basic networking for "adb root"
+    ifup lo
+    hostname localhost
+    domainname localdomain
+    #mount ext4 /dev/block/mmcblk0p7 /logs nosuid nodev barrier=1,data=ordered
+
+    mkdir /data/logs 0770 system log
+    mkdir /data/logs/modemcrash 0775 system system
+    mkdir /data/logs/stats 0775 system system
+    mkdir /data/logs/gps 0775 system system
+    mkdir /data/logs/aplogs 0775 system log
+
+on ramconsole
+    powerctl reboot
+
+
+#ASUS_BSP+++[Vincent_Ho]-20141107-Add
+#-----------------------------------------------------------------------------
+# Move from init.debug.rc to enable debug feature
+# Some of them should be removed when shipment is ready
+#-----------------------------------------------------------------------------
+on property:persist.service.aplogpti.enable=1
+    write /sys/module/logger_pti/parameters/out "main,system,radio"
+
+on property:persist.service.aplogpti.enable=0
+    write /sys/module/logger_pti/parameters/out ""
+
+on property:persist.service.aklogpti.enable=1
+   write /sys/module/logger_pti/parameters/out "main,system,radio,kernel"
+
+on property:persist.service.aklogpti.enable=0
+   write /sys/module/logger_pti/parameters/out ""
+
+on property:persist.service.profile.enable=0
+    start profile_stop
+
+on property:persist.service.profile.enable=1
+    start profile1_init
+
+on property:persist.service.profile.enable=2
+    start profile2_init
+
+on property:persist.service.power.enable=1
+    start profile_power
+
+on property:persist.service.power.enable=0
+    stop profile_power
+
+on property:persist.service.memmonitor.on=1
+    start memmonitor
+
+on property:persist.service.memmonitor.on=0
+    stop memmonitor
+
+on property:ro.debuggable=1
+    start powerlogsdump
+
+# crash and log services
+service crashlogd /system/bin/crashlogd
+    class late_start
+    oneshot
+
+service ap_logfs /system/bin/logcat -b system -b events -b main -b radio -n 20 -r10000 -v threadtime -f /data/logs/aplog KERNEL:S
+    class main
+    disabled
+
+service apk_logfs /system/bin/logcat -b system -b events -b main -b radio -n 20 -r10000 -v threadtime -f /data/logs/aplog
+    class main
+    disabled
+    seclabel u:r:apk_logfs:s0
+
+service apk_logsd /system/bin/logcat -b system -b events -b main -b radio -n 20 -r10000 -v threadtime -f /sdcard/aplog
+    disabled
+
+service ap_logsd /system/bin/logcat -b system -b events -b main -b radio -n 20 -r10000 -v threadtime -f /sdcard/aplog KERNEL:S
+    disabled
+
+service profile_stop /system/bin/pytimechart-record stop
+    disabled
+    oneshot
+
+service profile1_init /system/bin/pytimechart-record start_profile1
+    disabled
+    oneshot
+
+service profile1_rest /system/bin/pytimechart-record restart_profile1
+    disabled
+    oneshot
+
+service profile2_init /system/bin/pytimechart-record start_profile2
+    disabled
+    oneshot
+
+service profile2_rest /system/bin/pytimechart-record restart_profile2
+    disabled
+    oneshot
+
+service profile_power /system/bin/power-record
+    disabled
+    oneshot
+
+service memmonitor /system/bin/memmonitor.sh
+    disabled
+    oneshot
+
+# started by device/intel/log_capture/crashlog
+service logsystemstate /system/bin/dumpstate_dropbox.sh -v
+    class main
+    disabled
+    oneshot
+
+# Power debug logs
+service powerlogsdump /system/bin/logwrapper /system/bin/power_logs_dump.sh
+    disabled
+    oneshot
+
+#ASUS_BSP---[Vincent_Ho]-20141107-Add-Move from init.debug.rc to enable debug feature
+
+
+
+# crash and log services
+#service crashlogd /system/bin/crashmonitor
+#    class late_start
+#    user system
+#    group system log radio
+
+# LogConfig service
+service logconfig /system/bin/logconfig
+    class main
+    socket logconfig stream 0660 root system
+    disabled
+    oneshot
+
+#ASUS_BSP+++[Vincent_Ho]-20141107-Add-Move from init.debug.rc to enable debug feature
+import init.dump.rc
+#ASUS_BSP---[Vincent_Ho]-20141107-Add-Move from init.debug.rc to enable debug feature
+
+

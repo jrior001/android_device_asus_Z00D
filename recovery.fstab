@@ -1,0 +1,11 @@
+/dev/block/by-name/boot       /boot       osip      none        defaults
+/dev/block/by-name/recovery   /recovery   osip      none        defaults
+/dev/block/by-name/fastboot   /fastboot   osip      none        defaults
+
+/dev/block/by-name/system	/system	ext4	ro,noatime																					wait
+/dev/block/by-name/cache 	/cache 	ext4	nosuid,nodev,noatime,barrier=1,journal_async_commit,data=ordered                        	wait,check                                    
+/dev/block/by-name/config	/config	ext4	nosuid,nodev,noatime,barrier=1,data=ordered                                             	wait                                          
+/dev/block/by-name/data  	/data  	ext4	nosuid,nodev,noatime,barrier=1,journal_async_commit,data=ordered,noauto_da_alloc,discard	wait,check,encryptable=/config/userdata_footer
+*/block/mmcblk1*         	auto   	vfat	None	wait,noemulatedsd,voldmanaged=MicroSD:auto                                         
+*/block/sd*              	/Removable/USBdisk1	vfat	nosuid,nodev	wait,voldmanaged=usbdisk1:auto                                             
+/dev/block/zram0         	none   	swap	defaults                                                                                	zramsize=419430400                            

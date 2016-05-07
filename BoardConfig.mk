@@ -23,6 +23,7 @@ TARGET_CPU_ABI_LIST_32_BIT := x86,armeabi-v7a,armeabi
 #TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := x86
 
+TARGET_SPECIFIC_HEADER_PATH := device/asus/Z00D/include
 
 TARGET_BOARD_PLATFORM := clovertrail
 TARGET_BOOTLOADER_BOARD_NAME := clovertrail
@@ -34,8 +35,17 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Adb
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 
+# Audio
+BOARD_USES_ALSA_AUDIO := true
+BUILD_WITH_ALSA_UTILS := true
+BOARD_USES_TINY_ALSA_AUDIO := true
+
 # Binder API version
-#TARGET_USES_64_BIT_BINDER := true
+TARGET_USES_64_BIT_BINDER := true
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/Z00D/bluetooth
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := Z00D
@@ -43,10 +53,15 @@ TARGET_OTA_ASSERT_DEVICE := Z00D
 #TARGET_BOOTLOADER_IS_2ND := true
 
 # Charger
-#BOARD_HEALTHD_CUSTOM_CHARGER_RES := device/asus/zenfone2/charger/images
+BOARD_HEALTHD_CUSTOM_CHARGER_RES := device/asus/Z00D/charger/images
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
+# Houdini: enable ARM codegen for x86
+BUILD_ARM_FOR_X86 := true
 
 # EGL
 BOARD_EGL_CFG := device/asus/Z00D/configs/egl.cfg
+USE_OPENGL_RENDERER := true
 
 # Init
 TARGET_IGNORE_RO_BOOT_SERIALNO := true
@@ -62,7 +77,6 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 # Kernel cmdline
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 snd_pcm.maximum_substreams=8 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\"
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-#TARGET_PREBUILT_KERNEL := device/asus/Z00D/bzImage
 
 # prebuild source kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/Z00D/intel-boot-tools/boot.mk
@@ -72,6 +86,10 @@ DEVICE_BASE_RECOVERY_IMAGE := device/asus/Z00D/base_images/recovery_118.img
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
+
+# Media: DRM Protected Video
+BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
+USE_INTEL_SECURE_AVC := true
 
 # Partitions
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -89,12 +107,32 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 59261286400
 BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_FSTAB := device/asus/Z00D/recovery/root/etc/twrp.fstab
+TARGET_RECOVERY_FSTAB := device/asus/Z00D/recovery.fstab
 TARGET_RECOVERY_DEVICE_MODULES := libinit_Z00D
+TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
 
+# Releasetools
+BLOCK_BASED_OTA := false
+TARGET_RELEASETOOLS_EXTENSIONS := device/asus/Z00D/releasetools
+TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/Z00D/releasetools/make_recovery_patch
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/Z00D/releasetools/ota_from_target_files
 
 # SELinux
 # BOARD_SEPOLICY_DIRS += device/asus/Z00D/sepolicy
+
+# Wifi
+BOARD_WLAN_DEVICE           := bcmdhd
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+WPA_SUPPLICANT_VERSION      := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_HOSTAPD_DRIVER        := NL80211
+WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_AP      := "/asusfw/wifi/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_STA     := "/asusfw/wifi/fw_bcmdhd.bin"
+
+# Use the non-open-source parts, if they're present
+-include vendor/asus/Z00D/BoardConfigVendor.mk
 
 # TWRP
 TW_THEME := portrait_hdpi
@@ -106,4 +144,4 @@ TW_NO_USB_STORAGE := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_INCLUDE_NTFS_3G := true
 BOARD_SUPPRESS_EMMC_WIPE := true
-RECOVERY_VARIANT := twrp
+#RECOVERY_VARIANT := twrp

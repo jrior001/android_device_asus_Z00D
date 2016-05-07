@@ -15,11 +15,11 @@ Tools to pack/unpack ZenFone 5/6 boot images
 
 To build boot.img (or recovery.img) from custom kernel (bzImage) and initrd (ramdisk.cpio.gz), use original boot.img (or recovery.img) as input:
 
-	$ pack_intel boot.img bzImage ramdisk.cpio.gz new_boot.img
+	$ pack_intel boot.img bzImage ramdisk.cpio.gz cmdline new_boot.img
 
 To extract kernel (bzImage) and initrd (ramdisk.cpio.gz) from boot.img (or recovery.img):
 
-	$ unpack_intel boot.img bzImage ramdisk.cpio.gz
+	$ unpack_intel boot.img bzImage ramdisk.cpio.gz cmdline
 
 
 ### How to get original boot.img

@@ -1,0 +1,73 @@
+# Added by Cheryl Chen
+
+#****************************************************************#
+# [ASUS BSP] Cheryl Chen - PF450CL002S - Add SaveLogMTP Services #
+#****************************************************************#
+service savelogmtp /system/bin/sh /system/etc/savelogmtp.sh
+    class late_start
+    user root
+    group sdcard_rw
+    oneshot
+    disabled
+    seclabel u:r:savelogmtp:s0
+# [ASUS BSP] Cheryl Chen - PF450CL002E
+
+#+++ASUS_BSP-VincentHo-2014-03-31-Add-For AsusLogTool logcat service & kernel message
+service check-datalog /system/bin/sh /system/etc/init.asus.checkdatalog.sh
+    class late_start
+    oneshot
+
+on property:persist.asus.startlog=1
+    start check-datalog
+    start console
+    write /proc/kmsgconfig 1
+    write /proc/sys/fs/suid_dumpable 1
+    #write /sys/module/msm_rtb/parameters/enable 1
+on property:persist.asus.startlog=0
+    start check-datalog
+    stop  console
+    write /proc/kmsgconfig 0
+    write /proc/sys/fs/suid_dumpable 0
+    #write /sys/module/msm_rtb/parameters/enable 0
+
+service alpha_user_setting /system/bin/sh /system/etc/alpha_user_setting.sh
+    user root
+    group root
+    oneshot
+    disabled
+    
+service asus_kernelmsg /system/bin/sh /system/etc/init.asus.kernelmessage.sh
+	class late_start
+    user root
+    group root
+    disabled
+    oneshot
+on property:persist.asus.kernelmessage=0
+	start asus_kernelmsg
+
+on property:persist.asus.kernelmessage=7
+	start asus_kernelmsg    
+#---ASUS_BSP-VincentHo-2014-03-31-Add-For AsusLogTool logcat service & kernel message
+
+
+service modemtrace /system/bin/sh /system/bin/modemtrace-starter.sh
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+
+service stopmodemtrace /system/bin/sh /system/bin/stop_modem_setting
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:persist.asus.qxdmlog.enable=1
+    stop stopmodemtrace
+    start modemtrace 
+
+on property:persist.asus.qxdmlog.enable=0
+    stop modemtrace 
+    start stopmodemtrace
