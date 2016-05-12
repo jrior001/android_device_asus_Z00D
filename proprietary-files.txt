@@ -266,6 +266,7 @@ vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L1.so
 
 # EGL
+lib/libdrm.so
 lib/libpvr2d.so
 vendor/bin/pvrsrvctl
 vendor/lib/libIMGegl.so
@@ -324,6 +325,8 @@ lib/libOMXVideoDecoderAVCSecure.so
 lib/libOMXVideoDecoderH263.so
 lib/libOMXVideoDecoderMPEG4.so
 lib/libOMXVideoEncoderAVC.so
+lib/libOMXVideoEncoderH263.so
+lib/libhwcwidi.so
 lib/libintelmetadatabuffer.so
 lib/libmdp_omx_core.so
 lib/libmixvbp.so
