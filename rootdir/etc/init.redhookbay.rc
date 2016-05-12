@@ -294,7 +294,7 @@ on charger
 # ASUS_BSP David "upi gauge daemon" +++
 service upi_ug31xx /sbin/upi_ug31xx
     class core
-    seclabel u:r:upi_ug31xx:s0
+    #seclabel u:r:upi_ug31xx:s0
 # ASUS_BSP David "upi gauge daemon" ---
 
 # ASUS_BSP Paul +++
