@@ -200,6 +200,9 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
+    device/asus/Z00D/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
+PRODUCT_COPY_FILES += \
     device/asus/Z00D/10logcat:system/etc/init.d/10logcat \
 
 $(call inherit-product-if-exists, vendor/asus/Z00D/Z00D-vendor.mk)
