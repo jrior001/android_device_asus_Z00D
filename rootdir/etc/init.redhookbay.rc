@@ -318,3 +318,14 @@ service asus_checkaudbg /system/etc/init.asus.checkaudbg.sh
     oneshot
     seclabel u:r:audio_debug:s0
 # ASUS_BSP Paul ---
+
+service_redefine media /system/bin/mediaserver
+    class main
+    user media
+    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm radio system
+    ioprio rt 4
+
+service_redefine keystore /system/bin/keystore /data/misc/keystore
+    class main
+    user keystore
+    group keystore drmrpc system
