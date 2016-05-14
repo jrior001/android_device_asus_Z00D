@@ -16,7 +16,7 @@ on post-fs-data
     wait /dev/block/by-name/factory
 #    exec /system/bin/e2fsck -p /dev/block/platform/msm_sdcc.1/by-name/asusfw
     mount ext4 /dev/block/by-name/factory /factory nosuid nodev barrier=1 noauto_da_alloc
-    restorecon_recursive_force /factory
+    restorecon_recursive /factory
     mount ext4 /dev/block/by-name/factory /factory remount ro nosuid nodev barrier=1 noauto_da_alloc
 
 	start CheckProp
@@ -32,7 +32,7 @@ on post-fs-data
     mount ext4 /dev/block/by-name/ADF /ADF nosuid nodev barrier=1 noauto_da_alloc
     chmod 0775 /ADF
     chown system system /ADF
-    restorecon_recursive_force /ADF
+    restorecon_recursive /ADF
 
 #    wait /dev/block/by-name/APD
 #    mount ext4 /dev/block/by-name/APD /APD nosuid nodev barrier=1 noauto_da_alloc
@@ -177,7 +177,7 @@ service sp /bin/sp
 # ASUS_BSP +++ srhuang: Add for mount demoapp partition
 service mount-cache2 /system/bin/sh /system/etc/init.asus.mount-cache2.sh
         class late_start
-        disable
+        disabled
         oneshot
                                 
 on property:persist.sys.enableAPD=1
@@ -188,7 +188,7 @@ on property:persist.sys.enableAPD=1
 
     chmod 0775 /APD
     chown system system /APD
-    restorecon_recursive_force /APD
+    restorecon_recursive /APD
 
 
 #on property:persist.sys.enableAPD=0
@@ -267,7 +267,7 @@ service VerifyVouchers /system/bin/VerifyVouchers
 	user root
 	oneshot
 	disabled
-OA
+
 on property:sys.boot_completed=1
 	start VerifyVouchers
 # ASUS BSP Clay ---
