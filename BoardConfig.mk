@@ -56,6 +56,9 @@ TARGET_OTA_ASSERT_DEVICE := Z00D
 BOARD_HEALTHD_CUSTOM_CHARGER_RES := device/asus/Z00D/charger/images
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
+# Hardware
+BOARD_HARDWARE_CLASS := device/asus/Z00D/cmhw
+
 # Houdini: enable ARM codegen for x86
 BUILD_ARM_FOR_X86 := true
 
