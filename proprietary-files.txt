@@ -348,10 +348,10 @@ lib/libwsbm.so
 lib/pvr_drv_video.so
 
 # Radio
-lib/libmcdr.so
 lib/libmmgrcli.so
 lib/libmmgr_cnx.so
 lib/libmmgr_utils.so
+lib/libmodemupdate.so
 lib/libmodem-audio-collection.so
 lib/libtcs.so
 lib/librapid-ril-core.so
