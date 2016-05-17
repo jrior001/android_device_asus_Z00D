@@ -257,6 +257,7 @@ vendor/firmware/01s5k8aay.drvb
 
 # DRM
 lib/libkeymaster.so
+lib/libdrmdecrypt.so
 lib/hw/keystore.clovertrail.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
@@ -289,7 +290,6 @@ bin/bd_prov
 bin/bcu_cpufreqrel
 bin/fg_conf
 bin/nvm_server
-bin/sensorservice
 bin/mmgr
 
 # Firmware
@@ -450,13 +450,12 @@ vendor/firmware/telephony/mmgr_upgrade.sh
 vendor/firmware/telephony/XMM_7160_REV35_1538.00_V1.3_signed_MIPI_FLASHLESS.fls
 
 # Sensors
+bin/akmd09911
 bin/ZE500CL_GC2155_CONFIG
 bin/ZE500CL_HM2051_CONFIG
 bin/ZE500CL_T4K35_CONFIG
-etc/sensor_hal_config_default.xml
+lib/hw/sensors.redhookbay.so
 lib/hw/sensors.AKM.redhookbay.so
 lib/hw/sensors.PS_ALS.redhookbay.so
-lib/hw/sensors.redhookbay.so
-lib/libsensorservice.so
-
+lib/libcmdthread.so
 
