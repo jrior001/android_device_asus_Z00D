@@ -149,7 +149,7 @@ service akmd  /system/bin/akmd09911 -m 3
     class core
     user system
     group system misc input
-    seclabel u:r:asus_compass_server:s0
+    #seclabel u:r:asus_compass_server:s0
     oneshot
 
 # ASUS_BSP --- Peter_Lu "Akm09911 compass sensor & KXTJ9 Gsensor"
