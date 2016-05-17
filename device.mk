@@ -72,7 +72,12 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # GPS
 PRODUCT_COPY_FILES += \
     device/asus/Z00D/configs/gps.conf:system/etc/gps.conf \
-    device/asus/Z00D/configs/gps.xml:system/etc/gps.xml
+    device/asus/Z00D/configs/gps.xml:system/etc/gps.xml \
+    device/asus/Z00D/configs/gps_logcat.xml:system/etc/gps_logcat.xml \
+    device/asus/Z00D/configs/gps_rs.xml:system/etc/gps_rs.xml \
+    device/asus/Z00D/configs/gps_spirent.xml:system/etc/gps_spirent.xml \
+    device/asus/Z00D/configs/gps_spirent_areaid.xml:system/etc/gps_spirent_areaid.xml \
+    device/asus/Z00D/configs/gps_spirent_hslp.xml:system/etc/gps_spirent_hslp.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.spid.gps.pmm=disabled \
@@ -194,6 +199,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+
+# Sensor Configs
+PRODUCT_COPY_FILES += \
+    device/asus/Z00D/configs/sensor_hal_config_default.xml:system/etc/sensor_hal_config_default.xml \
+    device/asus/Z00D/configs/sensor_hal_config_general_default.xml:system/etc/sensor_hal_config_general_default.xml \
+    device/asus/Z00D/configs/sensor_hal_config_general_scale-pr1.xml:system/etc/sensor_hal_config_general_scale-pr1.xml \
+    device/asus/Z00D/configs/sensor_hal_config_scale-pr1.xml:system/etc/sensor_hal_config_scale-pr1.xml \
+    device/asus/Z00D/configs/thermal_sensor_config.xml:system/etc/thermal_sensor_config.xml \
+    device/asus/Z00D/configs/thermal_throttle_config.xml:system/etc/thermal_throttle_config.xml
 
 # Wifi
 PRODUCT_PACKAGES += \
