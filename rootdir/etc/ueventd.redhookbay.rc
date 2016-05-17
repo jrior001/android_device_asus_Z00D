@@ -69,3 +69,5 @@
 /sys/devices/virtual/thermal/thermal_zone*      trip_point_1_temp    0644 system system
 /sys/devices/virtual/thermal/thermal_zone*      trip_point_0_temp    0644 system system
 /sys/devices/virtual/thermal/thermal_zone*      emul_temp    0644 system system
+
+/dev/ug31xx               0660   system     system
