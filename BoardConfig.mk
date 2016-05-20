@@ -20,7 +20,7 @@ TARGET_CPU_ABI := x86
 TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
 TARGET_CPU_ABI_LIST_32_BIT := x86,armeabi-v7a,armeabi
-#TARGET_CPU_SMP := true
+TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := x86
 
 TARGET_SPECIFIC_HEADER_PATH := device/asus/Z00D/include
@@ -76,6 +76,7 @@ BOARD_KERNEL_IMAGE_NAME := bzImage
 TARGET_KERNEL_CONFIG := cyanogenmod_Z00D_defconfig
 KERNEL_SOC := ctp
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
+NEED_KERNEL_MODULE_ROOT := true
 
 # Kernel cmdline
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=ttyS0 console=logk0 earlyprintk=nologger bootup.uart=0 loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M bootboost=1
