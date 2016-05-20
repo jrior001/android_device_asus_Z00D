@@ -213,6 +213,7 @@ lib/DIT_AT_FRONT_PRE_ID4.cfg
 lib/DIT_AT_FRONT_VIDEO.cfg
 lib/DIT_AT_FRONT_VIDEO_ID4.cfg
 lib/ditCL.bin
+lib/libAsusArcsoftFaceEffect.so
 lib/libarcsoft_3dnr.so
 lib/libarcsoft_effect.so
 lib/libarcsoft_FaceTracking.so
@@ -240,6 +241,7 @@ lib/libia_panorama.so
 lib/libicui18n.so
 lib/libicuuc.so
 lib/libintlc.so
+lib/libmfldadvci.so
 lib/libmixvbp.so
 lib/libmix_imagedecoder.so
 lib/libmix_imageencoder.so
