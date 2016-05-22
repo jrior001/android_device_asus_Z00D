@@ -156,11 +156,21 @@ PRODUCT_PACKAGES += \
     libOMXVideoEncoderH263 \
     libOMXVideoEncoderMPEG4
 
+# PowerHAL
+PRODUCT_PACKAGES += \
+    power.clovertrail
+
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.status.polling.enable=0 \
     rild.libpath=/system/lib/librapid-ril-core.so \
     ro.telephony.default_network=9
+
+# Ramdisk config of governors
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.sys.perf.device.powersave=933000 \
+    ro.sys.perf.device.full=1600000 \
+    ro.sys.perf.device.touchboost=1333000
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -178,6 +188,7 @@ PRODUCT_PACKAGES += \
     init.modem.rc \
     init.platform.gfx.rc \
     init.platform.usb.rc \
+    init.power.clovertrail.rc \
     init.product.rc \
     init.redhookbay.rc \
     init.watchdog.rc \

@@ -165,14 +165,6 @@ on post-fs
     chown system system /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
     chown system system /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
 
-# Performance tweaks for interactive governor
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq
-    chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
-    chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-
     # Volume keys wakeup capability
     chmod 0664 /sys/devices/platform/gpio-keys/enabled_wakeup
     chmod 0664 /sys/devices/platform/gpio-keys/disabled_wakeup
@@ -263,8 +255,14 @@ on property:sys.boot_completed=1
 #  Permissions for Thermal Management
     chown system system /sys/class/thermal/cooling_device2/cur_state
 
-# Disable boost on boot complete
-    write /sys/devices/system/cpu/cpufreq/interactive/boost 0
+# Enable interactive governor
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
 
 on charger
 # mount factory
