@@ -199,6 +199,7 @@ etc/firmware/isp_acc_multires_css15.bin
 etc/firmware/isp_acc_postproc_css15.bin
 etc/firmware/isp_acc_warping_css15.bin
 etc/firmware/shisp_css15.bin
+etc/permissions/asus.software.zenui.xml
 lib/DataSet/ditSCidGen/msgchk.db
 lib/DataSet/ISP/libxditk_isp.bin
 lib/DIT_AT_BACK_HL.cfg
