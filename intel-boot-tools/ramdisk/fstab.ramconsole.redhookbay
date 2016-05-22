@@ -1,4 +1,0 @@
-/dev/block/by-name/system	/system	ext4	ro,noatime	wait
-*/block/mmcblk1*         	auto   	vfat	None	wait,noemulatedsd,voldmanaged=MicroSD:auto
-*/block/sd*              	/Removable/USBdisk1	vfat	nosuid,nodev	wait,voldmanaged=usbdisk1:auto
-/dev/block/zram0         	none   	swap	defaults  	zramsize=419430400

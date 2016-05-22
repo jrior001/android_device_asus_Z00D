@@ -100,12 +100,13 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 NEED_KERNEL_MODULE_ROOT := true
 
 # Kernel cmdline
-BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=ttyS0 console=logk0 earlyprintk=nologger bootup.uart=0 loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M bootboost=1
+BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=ttyS0 console=logk0 earlyprintk=nologger bootup.uart=0 loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
-# prebuild source kernel
-BOARD_CUSTOM_BOOTIMG_MK := device/asus/Z00D/intel-boot-tools/boot.mk
-BOARD_CUSTOM_MKBOOTIMG := device/asus/Z00D/intel-boot-tools/boot.mk
+# OTA Packaging / Bootimg creation
+BOARD_CUSTOM_BOOTIMG := true
+BOARD_CUSTOM_MKBOOTIMG := pack_intel
+BOARD_CUSTOM_BOOTIMG_MK := device/asus/Z00D/mkbootimg.mk
 DEVICE_BASE_BOOT_IMAGE := device/asus/Z00D/base_images/boot_118.img
 DEVICE_BASE_RECOVERY_IMAGE := device/asus/Z00D/base_images/recovery_118.img
 
@@ -142,9 +143,7 @@ TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
 
 # Releasetools
 BLOCK_BASED_OTA := false
-TARGET_RELEASETOOLS_EXTENSIONS := device/asus/Z00D/releasetools
 TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/Z00D/releasetools/make_recovery_patch
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/Z00D/releasetools/ota_from_target_files
 
 # SELinux
 # BOARD_SEPOLICY_DIRS += device/asus/Z00D/sepolicy
