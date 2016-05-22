@@ -50,6 +50,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     bt.hfp.WideBandSpeechEnabled=true
 
+# Camera
+PRODUCT_PACKAGES += \
+    bspcapability
+
 # Charger
 PRODUCT_PACKAGES += \
     charger \
