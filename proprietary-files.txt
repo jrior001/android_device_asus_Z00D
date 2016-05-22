@@ -170,8 +170,9 @@ usr/share/alsa/alsa.conf
 vendor/etc/route_criteria.conf
 
 # Bluetooth
-vendor/lib/libbt-vendor.so
+bin/bd_prov
 etc/firmware/BCM4343A0_001.001.034.0056.0224.hcd
+vendor/lib/libbt-vendor.so
 
 # Camera
 etc/atomisp/00ar0543_raw.cpf
@@ -288,7 +289,6 @@ vendor/lib/egl/libGLESv2_POWERVR_SGX544_115.so
 vendor/lib/hw/gralloc.redhookbay.so
 vendor/lib/hw/memtrack.redhookbay.so
 
-bin/bd_prov
 bin/bcu_cpufreqrel
 bin/fg_conf
 bin/nvm_server
@@ -322,12 +322,6 @@ lib/hw/lights.redhookbay.so
 bin/msvdx_bin
 bin/topaz_bin
 lib/hw/hwcomposer.clovertrail.so
-lib/libOMXVideoDecoderAVC.so
-lib/libOMXVideoDecoderAVCSecure.so
-lib/libOMXVideoDecoderH263.so
-lib/libOMXVideoDecoderMPEG4.so
-lib/libOMXVideoEncoderAVC.so
-lib/libOMXVideoEncoderH263.so
 lib/libhwcwidi.so
 lib/libintelmetadatabuffer.so
 lib/libmdp_omx_core.so
@@ -336,18 +330,10 @@ lib/libmixvbp_h264.so
 lib/libmixvbp_h264secure.so
 lib/libmixvbp_mpeg4.so
 lib/libmixvbp_vc1.so
+lib/libOMXVideoDecoderAVC.so
+lib/libOMXVideoDecoderAVCSecure.so
 lib/libmultidisplay.so
 lib/libsepdrm.so
-lib/libstagefrighthw.so
-lib/libva-android.so
-lib/libva-tpi.so
-lib/libva.so
-lib/libva_videodecoder.so
-lib/libva_videoencoder.so
-lib/libwrs_omxil_common.so
-lib/libwrs_omxil_core_pvwrapped.so
-lib/libwsbm.so
-lib/pvr_drv_video.so
 
 # Radio
 lib/libmmgrcli.so

@@ -117,6 +117,41 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
+# Media: SDK and OMX IL components
+PRODUCT_PACKAGES += \
+    msvdx_bin \
+    topaz_bin
+
+# Media: libva
+PRODUCT_PACKAGES += \
+    libva \
+    libva-android \
+    libva-tpi \
+    vainfo
+
+# Media: libstagefrighthw
+PRODUCT_PACKAGES += \
+    libstagefrighthw
+
+# libmix
+PRODUCT_PACKAGES += \
+    libmixvbp_mpeg4 \
+    libmixvbp_h264 \
+    libmixvbp_h264secure \
+    libmixvbp_vc1 \
+    libva_videodecoder \
+    libva_videoencoder
+
+PRODUCT_PACKAGES += \
+    libwrs_omxil_common \
+    libwrs_omxil_core_pvwrapped \
+    libOMXVideoDecoderH263 \
+    libOMXVideoDecoderMPEG4 \
+    libOMXVideoEncoderAVC \
+    libOMXVideoDecoderWMV \
+    libOMXVideoEncoderH263 \
+    libOMXVideoEncoderMPEG4
+
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.status.polling.enable=0 \
@@ -166,10 +201,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
-
-# IMG graphics
-#PRODUCT_PACKAGES += \
-#    hwcomposer.clovertrail
 
 # pvr
 PRODUCT_PACKAGES += \
