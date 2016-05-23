@@ -17,11 +17,11 @@ PRODUCT_RUNTIMES := runtime_libart_default
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := cm_Z00D
 PRODUCT_BRAND := asus
-PRODUCT_MODEL := ASUS_Z00D
+PRODUCT_MODEL := Z00D
 PRODUCT_MANUFACTURER := asus
 PRODUCT_DEVICE := Z00D
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=WW_Z00D \
+    PRODUCT_NAME=WW_Phone \
     BUILD_FINGERPRINT=asus/WW_Phone/ASUS_Z00D:5.0.1/LRX22C/WW_Phone-12.16.5.118-20151204:user/release-keys \
     PRIVATE_BUILD_DESC="WW_Phone-user 5.0.1 LRX22C WW_Phone-12.16.5.118-20151204 release-keys"

@@ -89,6 +89,9 @@ BOARD_USES_VIDEO := true
 
 # Init
 TARGET_IGNORE_RO_BOOT_SERIALNO := true
+TARGET_INIT_VENDOR_LIB := libinit_Z00D
+TARGET_UNIFIED_DEVICE := true
+TARGET_LIBINIT_DEFINES_FILE := device/asus/Z00D/init/init_Z00D.c
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/asus/Z00D
