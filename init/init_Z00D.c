@@ -102,6 +102,6 @@ static void set_props() {
 
 void vendor_load_properties()
 {
-    get_serial();
+    //get_serial();
     set_props();
 }

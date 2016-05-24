@@ -177,6 +177,7 @@ PRODUCT_PACKAGES += \
     btwifimac.sh \
     fstab.redhookbay \
     init.asus.rc \
+    init.asus.usb.sh \
     init.avc.rc \
     init.bt.rc \
     init.bt.vendor.rc \
@@ -200,7 +201,6 @@ PRODUCT_PACKAGES += \
     intel_prop.cfg \
     rfkill_bt.sh \
     thermald \
-    ueventd.audio.rc \
     ueventd.redhookbay.rc \
     upi_ug31xx \
     wifi_info.sh
