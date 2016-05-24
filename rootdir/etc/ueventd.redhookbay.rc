@@ -77,3 +77,7 @@
 /sys/devices/system/cpu/cpufreq interactive/touchboostpulse             0220 system system
 /sys/devices/system/cpu/cpufreq interactive/touchboostpulse_duration    0644 system system
 
+# ASUS_BSP Paul +++
+/dev/snd/*                0666   system     audio
+# ASUS_BSP Paul ---
+
