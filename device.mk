@@ -107,6 +107,10 @@ PRODUCT_COPY_FILES += \
     device/asus/Z00D/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     device/asus/Z00D/keylayout/cloverview_audio_Intel_MID_Audio_Jack.kl:system/usr/keylayout/cloverview_audio_Intel_MID_Audio_Jack.kl
 
+# Lights
+PRODUCT_PACKAGES += \
+    lights.clovertrail
+
 # Media
 PRODUCT_PROPERTY_OVERRIDES +=  \
     drm.service.enabled=true \
