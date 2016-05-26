@@ -25,7 +25,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.sys.powerctl.no.shutdown=1
 # Ramdisk
 PRODUCT_PACKAGES += \
     intel_prop.cfg \
-    ueventd.mofd_v1.rc
+    ueventd.redhookbay.rc
 
 # stlport required for our LP blobs
 PRODUCT_PACKAGES += \
