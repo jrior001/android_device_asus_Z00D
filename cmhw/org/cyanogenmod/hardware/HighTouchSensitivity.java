@@ -43,7 +43,10 @@ public class HighTouchSensitivity {
      * or the operation failed while reading the status; true in any other case.
      */
     public static boolean isEnabled() {
-        return (FileUtils.readOneLine(GLOVEMODE_PATH).contains("1"));
+        int i;
+        i = Integer.parseInt(FileUtils.readOneLine(GLOVEMODE_PATH));
+
+        return i == 1 ? true : false;
     }
 
     /**
