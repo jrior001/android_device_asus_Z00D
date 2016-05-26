@@ -315,9 +315,6 @@ etc/binfmt_misc/arm_exe
 bin/houdini
 lib/libhoudini.so
 
-# Lights
-lib/hw/lights.redhookbay.so
-
 # Media
 bin/msvdx_bin
 bin/topaz_bin

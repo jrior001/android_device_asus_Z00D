@@ -52,7 +52,7 @@ char const*const LED_BRIGHT_FILE
         = "/sys/class/leds/asus_led/brightness";
 
 char const*const LED_BLINK_FILE
-        = "/sys/class/leds/green/blink";
+        = "/sys/class/leds/asus_led/blink";
 
 /**
  * device methods
@@ -135,7 +135,10 @@ set_light_locked(struct light_state_t const* state)
     switch (state->flashMode) {
         case LIGHT_FLASH_TIMED:
         case LIGHT_FLASH_HARDWARE:
-                blink = 2; //2s blink rate (fast)  blink = 1 is 4s rate(slow)
+            if (state->flashOffMS > 1000)
+                blink = 1; // 4s rate(slow)
+            else
+                blink = 2; // 2s rate(fast)
             break;
         case LIGHT_FLASH_NONE:
         default:
@@ -155,15 +158,12 @@ set_light_locked(struct light_state_t const* state)
     if (green)
         brightness +=2;
 
-    ALOGD("set_light_locked colorRGB=%08X, red=%d, green=%d, blink=%d",
-            colorRGB, red, green, blink);
+    ALOGD("set_light_locked colorRGB=%08X, red=%d, green=%d, blink=%d, brightness=%d",
+            colorRGB, red, green, blink, brightness);
 
-    if (blink) {
-        write_int(LED_BLINK_FILE, blink);
-        write_int(LED_BRIGHT_FILE, brightness);
-    } else {
-        write_int(LED_BRIGHT_FILE, brightness);
-    }
+    write_int(LED_BLINK_FILE, blink);
+    write_int(LED_BRIGHT_FILE, brightness);
+
 
     return 0;
 }
