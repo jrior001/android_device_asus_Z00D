@@ -135,10 +135,7 @@ set_light_locked(struct light_state_t const* state)
     switch (state->flashMode) {
         case LIGHT_FLASH_TIMED:
         case LIGHT_FLASH_HARDWARE:
-            if (state == ATTENTION)
-                blink = 2;
-            else
-                blink = 1;
+                blink = 2; //2s blink rate (fast)  blink = 1 is 4s rate(slow)
             break;
         case LIGHT_FLASH_NONE:
         default:
