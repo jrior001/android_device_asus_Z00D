@@ -69,20 +69,13 @@ static void get_serial()
 {
     int ret = 0;
     char const *path = PHONE_INFO;
-    char buf[SERIAL_LENGTH + 1];
+    char buf[SERIAL_LENGTH];
     prop_info *pi;
 
     ERROR("%s: ATTEMPTING LOADING OF SSN\n", __func__);
     if(read_file2(path, buf, sizeof(buf))) {
         if (strlen(buf) > 0) {
-            pi = (prop_info*) __system_property_find(SERIAL_PROP);
-            if(pi)
-                ret = __system_property_update(pi, buf,
-                        strlen(buf));
-            else
-                ret = __system_property_add(SERIAL_PROP,
-                        strlen(SERIAL_PROP),
-                        buf, strlen(buf));
+            property_set("ro.serialno", buf);
         } else {
             ERROR("%s: FAILED LOADING SSN\n", __func__);
         }
@@ -102,6 +95,6 @@ static void set_props() {
 
 void vendor_load_properties()
 {
-    //get_serial();
+    get_serial();
     set_props();
 }
