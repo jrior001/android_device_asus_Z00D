@@ -193,7 +193,7 @@ PRODUCT_PACKAGES += \
     init.modem.rc \
     init.platform.gfx.rc \
     init.platform.usb.rc \
-    init.power.clovertrail.rc \
+    init.power.redhookbay.rc \
     init.product.rc \
     init.redhookbay.rc \
     init.watchdog.rc \

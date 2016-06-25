@@ -1,6 +1,7 @@
 import /init.watchdog.rc
 import /init.firmware.rc
 import /init.intel.feature.asf.rc
+import /init.power.redhookbay.rc
 import /init.ksm.rc
 import /init.readahead.rc
 import /init.zram.rc
